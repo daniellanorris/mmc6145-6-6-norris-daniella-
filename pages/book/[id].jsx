@@ -46,9 +46,12 @@ export default function Book(props) {
   }, [props.book, bookSearchResults, book, router])
 
   async function addToFavorites() {
+    fetch 
     // TODO: use fetch to call POST /api/book
+    JSON.stringify(req.body.book)
     // Be sure to pass book in body (use JSON.stringify)
     // Call router.replace(router.asPath) if you receive a 200 status
+    
   }
   async function removeFromFavorites() {
     // TODO: use fetch to call DELETE /api/book
