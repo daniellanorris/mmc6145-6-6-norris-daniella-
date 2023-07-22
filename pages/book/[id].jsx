@@ -57,7 +57,6 @@ export default function Book(props) {
         'content-type': 'application/json', 
       },
       body: JSON.stringify(book),
-      
     });
 
     if (res.status === 200) {
