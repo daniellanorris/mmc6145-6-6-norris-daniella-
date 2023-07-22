@@ -52,27 +52,24 @@ export default function Book(props) {
     e.preventDefault()
     const res = await fetch("/api/book", {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json', 
-      },
       body: JSON.stringify(book),
     });
+
     if (res.status === 200) {
-      router.replace(router.asPath) 
+      router.replace(router.asPath)
     }
   }
+
   async function removeFromFavorites(e) {
     // TODO: use fetch to call DELETE /api/book
     // Be sure to pass {id: <book id>} in body (use JSON.stringify)
     // Call router.replace(router.asPath) if you receive a 200 status
     e.preventDefault()
     const res = await fetch("/api/book" ,  {
-      method: 'DELETE', 
-      headers: {
-        "content-type": "application/json",
-      }, 
+      method: 'DELETE',  
       body: JSON.stringify({id: book.id})
-    })
+    });
+
     if (res.status === 200) {
       router.replace(router.asPath)
     }

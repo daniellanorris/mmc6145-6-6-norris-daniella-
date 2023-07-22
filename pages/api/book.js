@@ -1,6 +1,5 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import sessionOptions from "../../config/session"
-import { bookContext } from "../../context/book";
 import db from '../../db'
 
 // this handler runs for /api/book with any request method (GET, POST, etc)
@@ -14,7 +13,7 @@ export default withIronSessionApiRoute(
     // TODO: On a DELETE request, remove a book using db.book.remove with request body (must use JSON.parse)
       switch(req.method) {
         case 'POST' :
-          try {
+          try  {
           const book = JSON.parse(req.body) 
           const bookAdd = await db.book.add(req.session.user.id, book);
 
@@ -23,7 +22,7 @@ export default withIronSessionApiRoute(
             return res.status(401).json({error: "User not found"})
           }
 
-          return res.status(200).end()
+          return res.status(200).json(bookAdd)
           }
            catch (error) {
             return res.status(400).json({error: error.message})
@@ -31,8 +30,9 @@ export default withIronSessionApiRoute(
 
 
           case 'DELETE':
-              const bodyParsed = await JSON.parse(req.body) 
+              
             try {
+              const bodyParsed = await JSON.parse(req.body) 
               const bookDelete = await db.book.remove(req.session.user.id, bodyParsed.id);
               if (bookDelete === null) {
                 req.session.destroy()
