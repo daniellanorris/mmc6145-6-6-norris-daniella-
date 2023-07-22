@@ -60,7 +60,7 @@ export default function Book(props) {
       
     });
 
-    if (res.status == 200) {
+    if (res.status === 200) {
       router.replace(router.asPath) 
     }
   }
@@ -77,7 +77,7 @@ export default function Book(props) {
       }, 
       body: JSON.stringify(book)
     })
-    if (res.status == 200) {
+    if (res.status === 200) {
       router.replace(router.asPath)
     }
     
